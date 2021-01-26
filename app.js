@@ -9,9 +9,232 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+// creating an empty object to store all the team members.
+teamMember = [];
 
+// inquirer to gather information about the development team members,
+// start with the manager
+function init(){
+createManager();
+function createManager(){
+    console.log('Please build your team')
+    inquirer.prompt([
+        {
+            type:'input',
+            name :'managerName',
+            message :'what is the name of team manager?',
+            validate: answer =>{if (answer!== '') {
+                return true;  
+                }
+            else{
+                return 'Please provide the name of the team manager.';
+            }
+        } 
+    },
+    {
+        type: 'input',
+        name:'managerId',
+        message :'Manager ID no.',
+        validate: answer =>{
+            const correct = answer.match(/^[1-9]\d*$/)
+            if (correct) {
+               return true 
+            }
+            else{
+                return 'Please enter a valid number.'
+            }
+        }
+    },
+    {
+        type: 'input',
+        name : 'managerEmail',
+        message : 'Manager email address?',
+        validate: answer =>{
+            const correct = answer.match(/\S+@\S+\.\S+/);
+            if (correct) {
+                return true
+                
+            }
+            else{
+                return 'Please enter a valid email address.'
+            }
+        }
+    },
+    {
+        type :'input',
+        name :'managerOfficeNumber',
+        message :'Office number of manager.',
+        validate: answer =>{
+            const correct = answer.match(/^[1-9]\d*$/)
+            if (correct) {
+                return true  
+            }
+            else {
+                return 'Please enter a valid office number'
+            }
+        }
+    }
+    ])
+    .then(answers => {
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+        teamMember.push (manager);
+        createTeamMember()
+    });
+   
+};
+// function to promt user to chhose which team member they would like to add.
+ function createTeamMember(){
+    inquirer.prompt([{
+        type:'list',
+        name : 'teamMember',
+        message:'Which team member would you like to add?',
+        choices: ['Engineer', 'Intern', 'Done with creating team.']
+    }]).then(answers =>{
+        // creating an switch statement(if/else) to give option to user
+        // engineer or intern
+        switch (answers.teamMember) {
+            case 'Engineer': createEngineer();
+                
+                break;
+        
+            case 'Intern': createIntern();
+                break;
+            case 'Done with creating team.': render();
+        }
+    })
+ };
+// function to create engineer profile.
+function createEngineer(){
+inquirer.prompt([
+            {
+            type: 'input',
+            name:'engineerName',
+            message : 'Name of engineer.. ',
+            validate: answer =>{if (answer!== '') {
+                    return true   
+                    }
+                else{
+                    return 'Please provide the name of the engineer.'
+                }
+                }     
+            },
+            {
+                type :'input',
+                name :'engineerId',
+                message: 'Enter engineer ID',
+                validate: answer =>{
+                    const correct = answer.match(/^[1-9]\d*$/)
+                    if (correct) {
+                        return true  
+                    }
+                    else {
+                        return 'Please enter a valid ID number'
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name : 'github',
+                message :'Github userNmae of engineer',
+                validate: answer =>{if (answer!== '') {
+                    return true   
+                    }
+                else{
+                    return 'Please provide the github username of engineer.'
+                }
+                }
+            },
+            {
+                type:'input',
+                name :'engineerEmail',
+                message :'Please enter email of engineer.',
+                validate: answer =>{
+                    const correct = answer.match(/\S+@\S+\.\S+/);
+                    if (correct) {
+                        return true   
+                    }
+                    else{
+                        return 'Please enter a valid email address.'
+                    }
+                }
+            }
+        ])
+        .then(answers =>{
+            // creating an array of object on the basis of user response/answers and then pushing that object to teammember.
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
+        teamMember.push(engineer);
+        createTeamMember();
+        })
+        
+    }
+    function createIntern(){
+    inquirer.prompt([
+        {
+            type:'input',
+            name :'internName',
+            message :'name of intern?',
+            validate: answer =>{if (answer!== '') {
+                return true   
+                }
+            else{
+                return 'Please provide the name of Intern.'
+            }
+            }
 
-// Write code to use inquirer to gather information about the development team members,
+        },
+        {
+            type:'input',
+            name :'internId',
+            message:'Intern ID?',
+            validate: answer =>{
+                const correct = answer.match(/^[1-9]\d*$/)
+                if (correct) {
+                    return true  
+                }
+                else {
+                    return 'Please enter a valid ID number'
+                }
+            }
+        },
+        {
+            type:'input',
+            name:'internEmail',
+            message:'Intern e-mail address?',
+            validate: answer =>{
+                const correct = answer.match(/\S+@\S+\.\S+/);
+                if (correct) {
+                    return true   
+                }
+                else{
+                    return 'Please enter a valid email address.'
+                }
+            }
+        },
+        {
+            type:'input',
+            name:'internSchool',
+            message:`School name of intern school?`,
+            validate: answer =>{if (answer!== '') {
+                return true   
+                }
+            else{
+                return 'Please provide the school name of Intern.'
+            }
+            }
+        }
+    ])
+.then(answers =>{
+        const intern = new Intern (answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamMember.push(intern);
+        createTeamMember();
+    })
+// calling createTeamMember function to give use a option of continue done with creating team member.
+    
+}
+}
+ init();
+
+// creating an function to prompt user 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
