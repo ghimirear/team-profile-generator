@@ -10,11 +10,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 // creating an empty object to store all the team members.
-teamMember = [];
+const employees = [];
 
 // inquirer to gather information about the development team members,
 // start with the manager
 function init(){
+
 createManager();
 function createManager(){
     console.log('Please build your team')
@@ -77,8 +78,9 @@ function createManager(){
     ])
     .then(answers => {
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-        teamMember.push (manager);
+        employees.push (manager);
         createTeamMember()
+        console.log(employees)
     });
    
 };
@@ -99,7 +101,7 @@ function createManager(){
         
             case 'Intern': createIntern();
                 break;
-            case 'Done with creating team.': render();
+            case 'Done with creating team.': generatefile();
         }
     })
  };
@@ -162,8 +164,9 @@ inquirer.prompt([
         .then(answers =>{
             // creating an array of object on the basis of user response/answers and then pushing that object to teammember.
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
-        teamMember.push(engineer);
+        employees.push(engineer);
         createTeamMember();
+        console.log(employees);
         })
         
     }
@@ -225,14 +228,34 @@ inquirer.prompt([
     ])
 .then(answers =>{
         const intern = new Intern (answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-        teamMember.push(intern);
+        employees.push(intern);
+        console.log(employees);
         createTeamMember();
+        
     })
 // calling createTeamMember function to give use a option of continue done with creating team member.
     
 }
 }
- init();
+init()
+
+async function generatefile(){
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFile('./output/team.html',render(employees),function(err){
+        
+        if(err){
+            throw error;
+        }
+        {
+            console.log('your file is generated.')
+        }
+    })
+}
+
+ 
+ 
 
 // creating an function to prompt user 
 // and to create objects for each team member (using the correct classes as blueprints!)
