@@ -1,0 +1,46 @@
+body{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+   overflow-x: hidden;
+    background:linear-gradient(0 90deg honeydew,100  whitesmoke) ;
+   
+}
+header{
+    font-size: 1.5rem;
+    font-weight: 700;
+    height: 5rem;
+    background-color: rgb(12, 11, 11);
+    color: white;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+.card{
+    box-shadow: 0 0 3px 1px blueviolet;
+   margin: 13px;
+   width: 285px;
+   border-radius: 0px;
+
+}
+.card-header{
+    background-color: blue;
+    color: white;
+}
+.card-body{
+    background-color: azure;
+}
+.list-group-item{
+    background-color: azure;
+    color: black;
+    font-weight: 500;
+}
+.list-group{
+    box-shadow: 0 0 3px navajowhite;
+}
+.team-area{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
