@@ -6,3 +6,12 @@ and run the app.js file in terminal and answers the asked questions, on the basi
 This is a sample picture of profile it generate.
 
 ![demo picture](/pictures/teamprofile.JPG)
+# Instruction to use app.
+- download node js.
+- clone the repo to your computer.
+- Install dependencies
+inquirer and path 
+- run app.js file in terminal
+- answer the asked questions.
+
+
