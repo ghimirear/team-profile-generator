@@ -13,6 +13,7 @@ This is a sample picture of profile it generate.
 inquirer and path 
 - run app.js file in terminal
 - answer the asked questions.
-[video-link](https://drive.google.com/file/d/18SGAJhCc3Y3Vw9F_-TZDgSZbTfgYCv0S/view)
+
+-[video-link](https://drive.google.com/file/d/18SGAJhCc3Y3Vw9F_-TZDgSZbTfgYCv0S/view)
 
 
