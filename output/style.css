@@ -39,6 +39,9 @@ header{
 .list-group{
     box-shadow: 0 0 3px navajowhite;
 }
+.list-group-item{
+    background-color: whitesmoke;
+}
 .team-area{
     display: flex;
     flex-direction: row;

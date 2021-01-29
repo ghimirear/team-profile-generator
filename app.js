@@ -96,6 +96,8 @@ function createManager(){
         // engineer or intern
         switch (answers.teamMember) {
             // on the basis of user selection calling the function to prompt the questions
+            // createManager function is given as a choice may be there are multiple manager.
+            // simply can skip by selectiong other options.
             case 'Manager': createManager();
             break; 
             case 'Engineer': createEngineer();   
@@ -244,7 +246,7 @@ async function generatefile(){
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
     }
-    fs.writeFile('./output/team.html',render(employees),function(err){
+    fs.writeFile(outputPath,render(employees),function(err){
         
         if(err){
             throw error;
