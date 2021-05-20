@@ -1,9 +1,16 @@
 # team-profile-generator
-**team-profile-generator** is a simple app to generate employee profile
-and gives the custom style to different employee. For this you need to install node and dependencies 
-and run the app.js file in terminal and answers the asked questions, on the basis of the answers it generates whole team profile.
+**team-profile-generator** is a simple app poweres by 
+- node 
+- inquirer
+- HTML/CSS
+- javascript
+to generate employee profile manager/engineer/intern.
+# Installation
+- download the repo
+- install dependencies and 
+- run app.js file in terminal
 # Picture demonstration
-This is a sample picture of profile it generate.
+This is a demo picture of the team.
 
 ![demo picture](/pictures/teamprofile.JPG)
 # Instruction to use app.
