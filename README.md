@@ -5,7 +5,7 @@
 - HTML/CSS
 - javascript
  #
- to generate employee profile manager/engineer/intern.
+ to generate employee profile manager/engineer/intern. In terminal this app ask user to answer sets of question and on the basis of those answer team profile will generate.
 # Installation
 - download the repo
 - install dependencies and 
