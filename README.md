@@ -4,6 +4,7 @@
 - inquirer
 - HTML/CSS
 - javascript
+- #
  to generate employee profile manager/engineer/intern.
 # Installation
 - download the repo
